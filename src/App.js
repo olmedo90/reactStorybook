@@ -1,24 +1,43 @@
-import logo from './logo.svg';
+
 import './App.css';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import Footer from './components/Footer';
+import Header from './components/Header';
+import Index from './components/Index';
+import Comentarios from './components/comentarios/Comentarios';
+import PostComent from './components/comentarios/PostComent';
+import NavsLinks from './components/routes/NavsLinks';
+import { useState } from 'react';
 
 function App() {
+  const [nav, setNav]=useState(true);//hook de stado
+  
+  function enableNav(e){
+    setNav(true)
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className='app'>
+        <Header /><br /><br /><br />
+        {
+          nav?<NavsLinks/>:''
+         
+        }
+        <Routes>
+          <Route path='/' element={<Index />} />
+          <Route path='/comentarios/*' element={<Comentarios 
+            setNav={setNav}
+            enableNav={enableNav}
+          />}>
+            <Route path='post' element={<PostComent />} />
+          </Route>
+        
+
+        </Routes>
+        <Footer></Footer>
+      </div>
+    </Router>
+
   );
 }
 
