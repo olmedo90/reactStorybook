@@ -5,36 +5,33 @@ import Footer from './components/Footer';
 import Header from './components/Header';
 import Index from './components/Index';
 import Comentarios from './components/comentarios/Comentarios';
-import PostComent from './components/comentarios/PostComent';
+
+
 import NavsLinks from './components/routes/NavsLinks';
 import { useState } from 'react';
-
 function App() {
   const [nav, setNav]=useState(true);//hook de stado
   
-  function enableNav(e){
-    setNav(true)
-  }
+  
   return (
     <Router>
-      <div className='app'>
-        <Header /><br /><br /><br />
+      <div className=' col-md-12 col-lg-12 app  d-flex justify-content-center  row'>
+        <Header/>
         {
           nav?<NavsLinks/>:''
          
         }
         <Routes>
-          <Route path='/' element={<Index />} />
+          <Route path='/' element={<Index/>}/>
           <Route path='/comentarios/*' element={<Comentarios 
-            setNav={setNav}
-            enableNav={enableNav}
+            
           />}>
-            <Route path='post' element={<PostComent />} />
+            
           </Route>
         
 
         </Routes>
-        <Footer></Footer>
+            <Footer/>
       </div>
     </Router>
 
