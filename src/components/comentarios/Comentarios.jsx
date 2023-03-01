@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react'
-import { Link, Outlet, } from 'react-router-dom'
+import React, { useState, useEffect } from 'react';
+import { Link, Outlet, } from 'react-router-dom';
 import ModalsCrud from './ModalsCrud';
 import Swal from 'sweetalert2';
 import PropTypes from 'prop-types';
 
 
 
-const Comentarios = ({bg, titulo, nombre, nombreP}) => {
+const Comentarios = ({ sis719, num}) => {
 
   // modal
   const [show, setShow] = useState(false);//activar
@@ -32,7 +32,6 @@ const Comentarios = ({bg, titulo, nombre, nombreP}) => {
     }
     get();
   }, [updateList])
-
 
   //DELETE
 
@@ -77,32 +76,23 @@ const Comentarios = ({bg, titulo, nombre, nombreP}) => {
       }
     })
     console.log(id);
-
-
-
   }
   // Editar
   const [modoEditar, setModoEditar] = useState(false);
   const editShow = () => setModoEditar(true);
   const [datos, setDatos] = useState([]);
-
   function editar(coment) {
     editShow();
     handleShow();
     setDatos(coment);
-
-
   }
   return (
     <div>
-
-      <h3>{titulo||'Comentarios sis719'}</h3>
+      <h1>{`${sis719 || 'Comentarios'} ${num}`}</h1>
       <nav>
         <button className='btn btn-success' onClick={handleShow}>
           Agregar comentario
         </button>
-
-
       </nav>
       <br />
       {show && <ModalsCrud
@@ -144,8 +134,10 @@ const Comentarios = ({bg, titulo, nombre, nombreP}) => {
     </div>
   )
 }
+
 Comentarios.propTypes = {
- titulo: PropTypes.string,
+  sis719: PropTypes.string,
+  num:PropTypes.number
 };
 
 export default Comentarios
